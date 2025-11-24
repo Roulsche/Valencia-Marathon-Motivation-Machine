@@ -16,13 +16,11 @@
       --border-soft: #e5e7eb;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Poppins", sans-serif;
       background: var(--bg);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
@@ -36,278 +34,88 @@
       padding: 16px 16px 32px;
     }
 
-    .card {
+    .card, .map-card, .motivation-card, .final-card {
       width: 100%;
       max-width: 520px;
       background: var(--bg);
       border-radius: 18px;
-      padding: 18px 18px 24px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      padding: 18px;
       border: 1px solid var(--border-soft);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
     }
 
-    header.hero h1 {
-      font-size: 1.6rem;
-      margin: 0 0 4px;
-    }
-
-    header.hero p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--text-soft);
-    }
+    header.hero h1 { font-size: 1.6rem; margin: 0 0 4px; }
+    header.hero p { margin: 0; color: var(--text-soft); }
 
     .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #e0f2ff;
-      color: var(--accent-blue);
-      font-size: 0.7rem;
-      font-weight: 500;
+      display: inline-flex; gap: 6px; padding: 4px 10px;
+      background: #e0f2ff; color: var(--accent-blue);
+      border-radius: 999px; font-size: 0.7rem;
       margin-bottom: 6px;
     }
 
-    .pill span.emoji {
-      font-size: 0.9rem;
-    }
-
-    .section {
-      width: 100%;
-      max-width: 520px;
-      margin-top: 18px;
-    }
-
-    .map-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 12px 12px 18px;
-      border: 1px solid #dde3f0;
-    }
-
-    .map-card h2 {
-      font-size: 0.95rem;
-      margin: 0 0 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .map-card p {
-      margin: 0;
-      font-size: 0.8rem;
-      color: var(--text-soft);
-    }
+    .section { width: 100%; max-width: 520px; margin-top: 20px; }
 
     .route-wrapper {
       margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 0 0;
+      display: flex; justify-content: center;
     }
 
-    svg.route {
-      width: 80vw;
-      max-width: 360px;
-      height: auto;
-      display: block;
-    }
-
-    .route-base {
-      fill: none;
-      stroke: #d4e4ff;
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .route-active {
-      fill: none;
-      stroke: var(--accent-blue);
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 6 6;
-      transition: stroke 0.3s ease, filter 0.3s ease;
-    }
-
-    .route-active.completed {
-      stroke: url(#routeGradient);
-      stroke-dasharray: none;
-      filter: drop-shadow(0 0 10px rgba(61, 165, 255, 0.7));
-    }
-
-    .motivation-card {
-      background: var(--bg);
-      border-radius: 18px;
-      padding: 16px 16px 20px;
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+    img.route-svg {
+      width: 80%; max-width: 360px;
+      display: block; margin: 0 auto;
     }
 
     .motivation-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
+      display: flex; justify-content: space-between;
       margin-bottom: 10px;
     }
 
-    .motivation-header h2 {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    .counter {
-      font-size: 0.75rem;
-      color: var(--text-soft);
-    }
-
     button.primary {
-      width: 100%;
-      border: none;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
+      width: 100%; padding: 12px;
+      border: none; border-radius: 999px;
+      font-size: 0.95rem; font-weight: 500;
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-orange));
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 10px 24px rgba(61, 165, 255, 0.4);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-    }
-
-    button.primary:active {
-      transform: translateY(1px);
-      box-shadow: 0 8px 18px rgba(61, 165, 255, 0.35);
-      filter: brightness(0.97);
+      color: white; cursor: pointer;
     }
 
     #motivation-box {
-      margin-top: 12px;
-      min-height: 70px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: var(--text-main);
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
+      margin-top: 12px; min-height: 70px;
+      opacity: 0; transform: translateY(6px);
+      transition: 0.2s ease;
     }
 
     #motivation-box.show {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1; transform: translateY(0);
     }
 
-    .hint {
-      margin-top: 8px;
-      font-size: 0.75rem;
-      color: var(--text-soft);
-    }
-
-    .final-section {
-      margin-top: 18px;
-    }
-
-    .final-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 14px 14px 18px;
-      border: 1px dashed #cbd5f5;
-      text-align: center;
-    }
-
-    .final-card p {
-      margin: 0 0 8px;
-      font-size: 0.85rem;
-      color: var(--text-soft);
-    }
-
-    .final-card button {
-      margin-top: 4px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    #video-container {
-      margin-top: 12px;
-      text-align: left;
-    }
+    .hidden { display: none; }
 
     #video-container video {
-      width: 100%;
-      border-radius: 16px;
-      background: black;
-    }
-
-    .video-note {
-      margin-top: 6px;
-      font-size: 0.75rem;
-      color: var(--text-soft);
-    }
-
-    @media (min-width: 768px) {
-      header.hero h1 {
-        font-size: 1.8rem;
-      }
+      width: 100%; border-radius: 16px; background: black;
     }
   </style>
 </head>
+
 <body>
   <main class="page">
+
     <section class="card">
       <header class="hero">
         <div class="pill">
-          <span class="emoji">🏃‍♀️</span>
-          <span>Valencia Marathon 2025</span>
+          <span>🏃‍♀️</span><span>Valencia Marathon 2025</span>
         </div>
         <h1>Marathon Motivation Machine</h1>
-        <p>A little pocket of courage for race day. One tap, one reason you&apos;re going to crush 42.195 km.</p>
+        <p>One tap, one reason you’re going to crush 42.195 km.</p>
       </header>
     </section>
 
     <section class="section">
       <div class="map-card">
-        <h2>Race route overview <span>🗺</span></h2>
-        <p>Stylised trace of the marathon route. Scroll, breathe, and imagine each section carrying you forward.</p>
+        <h2>Race route overview 🗺</h2>
+        <p>Scroll and breathe as you follow the path toward the finish line.</p>
         <div class="route-wrapper">
-          <svg
-            class="route"
-            viewBox="0 0 360 800"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-labelledby="routeTitle routeDesc"
-            role="img"
-          >
-            <title id="routeTitle">Stylised vertical route of the Valencia Marathon</title>
-            <desc id="routeDesc">A simplified vertical path representing the marathon course, drawn as a single continuous line.</desc>
-            <defs>
-              <linearGradient id="routeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#3DA5FF"/>
-                <stop offset="100%" stop-color="#FF7A00"/>
-              </linearGradient>
-            </defs>
-            <svg ...>
-           <section class="section">
-  <div class="map-card">
-    <h2>Race route overview <span>🗺</span></h2>
-    <p>Stylised trace of the marathon route. Scroll, breathe, and imagine each section carrying you forward.</p>
-
-    <div class="route-wrapper">
-      <img src="route.svg" class="route-svg" alt="Marathon route">
-    </div>
-
-  </div>
-</section>
-          </svg>
+          <img src="tracks.svg" class="route-svg" alt="Marathon Route">
         </div>
       </div>
     </section>
@@ -316,106 +124,72 @@
       <div class="motivation-card">
         <div class="motivation-header">
           <h2>Tap for motivation</h2>
-          <span class="counter" id="counter">0 / 10</span>
+          <span id="counter">0 / 10</span>
         </div>
-        <button class="primary" id="motivate-btn">
-          Tap for a reason you&apos;ll finish strong
-          <span>✨</span>
-        </button>
+
+        <button class="primary" id="motivate-btn">Tap for a reason ✨</button>
+
         <div id="motivation-box"></div>
-        <p class="hint" id="hint">Ten taps, ten reminders. After that, something special unlocks.</p>
+        <p id="hint" class="hint">Ten taps unlock a final surprise.</p>
       </div>
     </section>
 
-    <section class="section final-section">
-      <div class="final-card hidden" id="final-card">
-        <p>You&apos;ve unlocked every reminder. One last surprise is waiting for you.</p>
-        <button class="primary" id="reveal-btn">
-          Tap to reveal your final message 🎥
-        </button>
-        <div id="video-container" class="hidden">
-          <video controls src="video.mp4" preload="metadata"></video>
-          <p class="video-note">
-            This is just a placeholder file name for now. On GitHub, replace <code>video.mp4</code> with your own message.
-          </p>
+    <section class="section">
+      <div id="final-card" class="final-card hidden">
+        <p>You’ve unlocked everything. One last surprise remains.</p>
+        <button class="primary" id="reveal-btn">Reveal message 🎥</button>
+        <div class="hidden" id="video-container">
+          <video controls src="video.mp4"></video>
         </div>
       </div>
     </section>
+
   </main>
 
   <script>
     const messages = [
-      "You didn&apos;t sign up for this by accident. You trained, you showed up, and your body remembers every kilometre.",
-      "Valencia is flat, fast, and bright – but you&apos;re the one bringing the real energy to these streets.",
-      "At the start line, your only job is to breathe. The first kilometres are just a warm-up for everything you&apos;ve already done.",
-      "When it gets hard, remember: you&apos;ve done tired runs, busy days, and long weeks. This is your celebration lap.",
-      "Every water station, every corner, every landmark is another &quot;I&apos;m still here&quot; to yourself.",
-      "Km 30 is where your legs might doubt, but your mind becomes the engine. You&apos;re stronger than that voice.",
-      "Look around – thousands of people, one race. But nobody has your story, your fight, or your reasons.",
-      "The finish line isn&apos;t the goal. The goal was becoming the person who can stand on this course. You already did that.",
-      "When you see the city opening up towards the last kilometres, remember: this is exactly where you wanted to be.",
-      "You are ready. You are capable. And when you cross that line, it&apos;s not luck – it&apos;s you choosing courage again and again."
+      "You didn't sign up for this by accident...",
+      "Valencia is flat, fast, and bright — and you’ll match its energy.",
+      "Your body remembers every kilometre you've trained.",
+      "This race isn’t suffering — it’s a celebration.",
+      "Every corner is another moment you prove yourself.",
+      "Your mind is stronger than your legs will ever know.",
+      "Nobody here has your story or your strength.",
+      "You already became the person who can finish a marathon.",
+      "These streets are waiting for you.",
+      "You are ready. You are capable. You chose courage."
     ];
-
-    const motivateBtn = document.getElementById("motivate-btn");
-    const box = document.getElementById("motivation-box");
-    const counterEl = document.getElementById("counter");
-    const hintEl = document.getElementById("hint");
-    const routeActive = document.getElementById("route-active");
-    const finalCard = document.getElementById("final-card");
-    const revealBtn = document.getElementById("reveal-btn");
-    const videoContainer = document.getElementById("video-container");
 
     let index = 0;
 
-    function updateCounter() {
-      counterEl.textContent = `${index} / 10`;
-    }
+    const btn = document.getElementById("motivate-btn");
+    const box = document.getElementById("motivation-box");
+    const counter = document.getElementById("counter");
+    const finalCard = document.getElementById("final-card");
 
-    function showMessage() {
-      if (index >= messages.length) {
-        finalCard.classList.remove("hidden");
-        routeActive.classList.add("completed");
-        hintEl.textContent = "Scroll a bit and open your final surprise when you feel ready.";
-        return;
-      }
+    btn.onclick = () => {
+      if (index >= messages.length) return;
 
-      const message = messages[index];
-      index += 1;
-      updateCounter();
+      const msg = messages[index];
+      index++;
+      counter.textContent = `${index} / 10`;
 
       box.classList.remove("show");
       setTimeout(() => {
-        box.innerHTML = message;
+        box.textContent = msg;
         box.classList.add("show");
       }, 120);
 
-      if (index === messages.length) {
-        routeActive.classList.add("completed");
-        hintEl.textContent = "You&apos;ve collected every reminder. Scroll down for one last surprise.";
+      if (index === 10) {
         finalCard.classList.remove("hidden");
-        setTimeout(() => {
-          finalCard.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 400);
       }
-    }
+    };
 
-    motivateBtn.addEventListener("click", showMessage);
-
-    revealBtn.addEventListener("click", () => {
-      videoContainer.classList.toggle("hidden");
-      if (!videoContainer.classList.contains("hidden")) {
-        revealBtn.textContent = "Hide message 🎥";
-        const video = videoContainer.querySelector("video");
-        if (video) {
-          video.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      } else {
-        revealBtn.textContent = "Tap to reveal your final message 🎥";
-      }
-    });
-
-    updateCounter();
+    document.getElementById("reveal-btn").onclick = () => {
+      const vc = document.getElementById("video-container");
+      vc.classList.toggle("hidden");
+    };
   </script>
+
 </body>
 </html>
