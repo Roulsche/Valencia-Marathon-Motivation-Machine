@@ -1,0 +1,28 @@
+<svg width="220" height="180" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Hair (flowing orange ponytail) -->
+  <path d="M90 40 
+           C110 45, 130 20, 150 10 
+           C138 25, 135 40, 150 55 
+           C130 50, 120 55, 100 50
+           Z"
+        fill="#ff7a00" opacity="0.9"/>
+
+  <!-- Head -->
+  <circle cx="85" cy="45" r="14" fill="black"/>
+
+  <!-- Body -->
+  <path d="M85 59 
+           L82 90 
+           L110 110 
+           M82 90 
+           L72 120
+           M110 110
+           L130 125
+           M72 120
+           L95 150
+           M130 125
+           L150 150"
+        stroke="black" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+</svg>
