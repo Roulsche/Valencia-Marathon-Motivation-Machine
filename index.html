@@ -1,263 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Valencia Marathon — Motivation Machine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marathon Motivation Machine</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Poppins font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Define custom colors and transitions */
+        :root {
+            --light-blue: #3da5ff;
+            --orange: #ff7a00;
+            --soft-grey: #f3f4f6; /* A light grey from Tailwind's palette */
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text-main: #1f2933;
-      --text-soft: #6b7280;
-      --blue: #3da5ff;
-      --orange: #ff7a00;
-      --card: #f5f7fb;
-      --border: #e5e7eb;
-    }
+        /* Style for the runner with smooth transition */
+        #runner {
+            position: absolute;
+            left: 50%;
+            /* Adjust width/height based on your SVG */
+            width: 40px; 
+            height: 50px;
+            /* transform: translateX(-50%); */ /* Centering is tricky, depends on SVG. Let's try right-facing. */
+            margin-left: -20px; /* Half of width to center */
+            
+            /* This is the magic! */
+            transition: top 0.8s ease-in-out;
+        }
 
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: var(--bg);
-      color: var(--text-main);
-    }
+        /* Style for the message fade-in */
+        #current-message {
+            transition: opacity 0.5s ease-in-out;
+            /* Set a fixed height to prevent layout jump */
+            min-height: 5rem; /* Approx 3 lines of text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .page {
-      max-width: 520px;
-      margin: auto;
-      padding: 16px;
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      margin-bottom: 4px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #e0f2ff;
-      color: var(--blue);
-      font-size: 0.75rem;
-      margin-bottom: 6px;
-    }
-
-    .card {
-      background: var(--bg);
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 20px rgba(61, 165, 255, 0.1);
-    }
-
-    .map-card {
-      background: var(--card);
-      border-radius: 18px;
-      padding: 16px;
-      border: 1px solid #dde3f0;
-      margin-top: 20px;
-    }
-
-    .route-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-    }
-
-    .route-svg {
-      width: 70vw;
-      max-width: 300px;
-    }
-
-    #runner {
-      width: 50px;
-      position: absolute;
-      left: 55%;
-      transform: translateX(-50%);
-      transition: top 0.5s ease;
-    }
-
-    .motivation-card {
-      margin-top: 20px;
-      background: var(--bg);
-      border-radius: 18px;
-      padding: 20px;
-      border: 1px solid var(--border);
-    }
-
-    button {
-      width: 100%;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 500;
-      color: white;
-      background: linear-gradient(135deg, var(--blue), var(--orange));
-      box-shadow: 0 10px 24px rgba(61, 165, 255, 0.4);
-    }
-
-    #motivation-box {
-      margin-top: 12px;
-      min-height: 70px;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    #motivation-box.show {
-      opacity: 1;
-    }
-
-    #final-card {
-      margin-top: 25px;
-      padding: 16px;
-      border: 1px dashed #cbd5f5;
-      border-radius: 18px;
-      background: var(--card);
-      text-align: center;
-      display: none;
-    }
-
-    #video-container {
-      margin-top: 12px;
-      display: none;
-    }
-
-    video {
-      width: 100%;
-      border-radius: 12px;
-    }
-  </style>
+        /* Custom button colors */
+        .btn-blue {
+            background-color: var(--light-blue);
+        }
+        .btn-blue:hover {
+            background-color: #3593e0; /* A slightly darker shade */
+        }
+        .btn-orange {
+            background-color: var(--orange);
+        }
+        .btn-orange:hover {
+            background-color: #e06b00; /* A slightly darker shade */
+        }
+    </style>
 </head>
+<body class="bg-white flex items-center justify-center min-h-screen">
 
-<body>
-  <main class="page">
+    <!-- Main container with mobile-friendly max-width -->
+    <main class="max-w-md w-full space-y-4 p-4">
 
-    <div class="card">
-      <div class="pill">🏃‍♀️ Valencia Marathon 2025</div>
-      <h1>Marathon Motivation Machine</h1>
-      <p>Each tap moves you forward — and reminds you why you'll crush these 42.195 km.</p>
-    </div>
-
-    <!-- MAP -->
-    <div class="map-card">
-      <h2>Race map 🗺</h2>
-      <p>Every tap moves your runner up the course.</p>
-
-      <div class="route-wrapper">
-        <img src="route.svg" class="route-svg" id="route">
-        <!-- Runner -->
-        <div id="runner">
-          <!-- SIMPLE ELEGANT RUNNER SVG -->
-          <svg width="55" height="55" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
-            <path d="M90 40 
-                     C110 45, 130 20, 150 10 
-                     C138 25, 135 40, 150 55 
-                     C130 50, 120 55, 100 50
-                     Z"
-                  fill="#ff7a00" opacity="0.9"/>
-            <circle cx="85" cy="45" r="14" fill="black"/>
-            <path d="M85 59 
-                     L82 90 
-                     L110 110 
-                     M82 90 
-                     L72 120
-                     M110 110
-                     L130 125
-                     M72 120
-                     L95 150
-                     M130 125
-                     L150 150"
-                  stroke="black" stroke-width="6" stroke-linecap="round" fill="none"/>
-          </svg>
+        <!-- 1. Header Card -->
+        <div id="header-card" class="bg-gray-100 rounded-lg p-6 text-center shadow-md">
+            <h1 class="text-3xl font-bold text-gray-800">Marathon Motivation Machine</h1>
+            <p class="text-gray-600 mt-2">For Valencia's best runner.</p>
         </div>
-      </div>
-    </div>
 
-    <!-- MOTIVATION -->
-    <div class="motivation-card">
-      <h2>Tap for motivation</h2>
-      <button id="motivate-btn">Next message ✨</button>
+        <!-- 2. Map Card -->
+        <div id="map-card" class="bg-gray-100 rounded-lg p-6 shadow-md">
+            <!-- Relative container for positioning the runner -->
+            <div class="map-area relative w-[80%] mx-auto">
+                
+                <!-- 
+                  MAP SVG: Replace this placeholder with your 'route.svg'
+                  It's important this image is TALL to show progress.
+                -->
+                <img src="https://placehold.co/300x800/e0e0e0/cccccc?text=Your+Vertical+Map\n(route.svg)" 
+                     id="map-route" 
+                     alt="Marathon Route" 
+                     class="w-full h-auto rounded">
+                
+                <!-- 
+                  RUNNER SVG: Replace this placeholder with your 'runner.svg'
+                  This is the element that will move.
+                -->
+                <img src="https://placehold.co/40x50/ff7a00/ffffff?text=🏃‍♀️" 
+                     id="runner" 
+                     alt="Runner" 
+                     class="rounded">
+            </div>
+        </div>
 
-      <div id="motivation-box"></div>
-    </div>
+        <!-- 3. Motivation Card -->
+        <div id="motivation-card" class="bg-gray-100 rounded-lg p-6 text-center shadow-md">
+            <!-- Message container -->
+            <div id="message-container" class="mb-4">
+                <p id="current-message" class="text-lg text-gray-700 opacity-0 p-4">
+                    Click "Start" to begin your run!
+                </p>
+            </div>
+            
+            <!-- Action Button -->
+            <button id="next-step-button" class="btn-blue text-white py-3 px-8 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                Start
+            </button>
+        </div>
 
-    <!-- FINAL SURPRISE -->
-    <div id="final-card">
-      <p>You've reached the end of the journey. One last message awaits…</p>
-      <button id="reveal-btn">Reveal 🎥</button>
+        <!-- 4. Final Card (Initially Hidden) -->
+        <div id="final-card" class="bg-gray-100 rounded-lg p-6 text-center shadow-md hidden">
+            <h2 class="text-2xl font-bold text-gray-800">You did it!</h2>
+            <p class="text-gray-600 mt-2 mb-6">You've reached the finish line. We are so proud of you. <br> One final surprise...</p>
+            
+            <button id="reveal-button" class="btn-orange text-white py-3 px-8 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                Reveal 🎥
+            </button>
 
-      <div id="video-container">
-        <video controls src="video.mp4"></video>
-      </div>
-    </div>
+            <!-- Video Wrapper (Initially Hidden) -->
+            <div id="video-wrapper" class="hidden mt-6 rounded-lg overflow-hidden shadow-inner">
+                <!-- 
+                  VIDEO FILE: Replace this placeholder with your 'personal-video.mp4'
+                -->
+                <video id="final-video" class="w-full" controls>
+                    <!-- <source src="personal-video.mp4" type="video/mp4"> -->
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
 
-  </main>
+    </main>
 
-  <script>
-    const messages = [
-      "You didn’t sign up for this by accident. You trained, you showed up, and your body remembers every kilometre.",
-      "Valencia is flat, fast, and bright — but you’re the one bringing the real energy.",
-      "The first kilometres? That’s just your warm-up.",
-      "Every water station is another 'I'm still here' to yourself.",
-      "You're stronger than any tired legs.",
-      "Look around — nobody has your story, your fight, your reasons.",
-      "The finish line isn’t the goal. Becoming this version of you was.",
-      "Every step is proof you're exactly where you belong.",
-      "The last kilometres are yours — take them.",
-      "You are ready. You are capable. You will finish strong."
-    ];
-
-    let index = 0;
-
-    const box = document.getElementById("motivation-box");
-    const runner = document.getElementById("runner");
-    const motivateBtn = document.getElementById("motivate-btn");
-    const finalCard = document.getElementById("final-card");
-    const revealBtn = document.getElementById("reveal-btn");
-    const videoContainer = document.getElementById("video-container");
-
-    function moveRunner() {
-      // map is ~800px tall → 10 steps = 80px per message
-      let top = 420 - (index * 35);
-      runner.style.top = top + "px";
-    }
-
-    function showMessage() {
-      if (index >= messages.length) return;
-
-      box.classList.remove("show");
-      setTimeout(() => {
-        box.textContent = messages[index];
-        box.classList.add("show");
-      }, 100);
-
-      index++;
-      moveRunner();
-
-      if (index === messages.length) {
-        finalCard.style.display = "block";
-      }
-    }
-
-    motivateBtn.addEventListener("click", showMessage);
-
-    revealBtn.addEventListener("click", () => {
-      videoContainer.style.display = "block";
-      videoContainer.scrollIntoView({ behavior: "smooth" });
-    });
-
-    // initial runner position
-    runner.style.top = "420px";
-  </script>
-
-</body>
-</html>
+    <script
