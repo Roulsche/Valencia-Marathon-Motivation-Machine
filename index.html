@@ -107,12 +107,14 @@
       justify-content: center;
       align-items: center;
       padding: 8px 0 0;
+      overflow: hidden;
     }
 
     svg.route {
-      width: 80vw;
+      width: auto;
       max-width: 360px;
       height: auto;
+      max-height: 80vh;
       display: block;
     }
 
@@ -260,10 +262,11 @@
         font-size: 1.8rem;
       }
     }
-  </style>
   <style>
-  header.hero {
-    text-align: center;
+  header.hero .pill {
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
 </head>
@@ -275,7 +278,7 @@
           <span class="emoji">🏃‍♀️</span>
           <span>Valencia Marathon 2025</span>
         </div>
-        <h1> Motivation for Gracie <3</h1>
+        <h1> Motivation for Gracie <span>🧡</span></h1>
         <p>A little pocket of courage for race day. One tap, one reason you&apos;re going to crush 42.195 km!</p>
       </header>
     </section>
